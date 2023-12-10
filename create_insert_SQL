@@ -41,3 +41,28 @@ CREATE TABLE suppliers(
 )
 alter table suppliers 
 alter column supplier_name type varchar(50)
+-- Insert first two entries into employees table
+-- Set the coffeeshop_id (FK) to NULL for now as I have not inserted the coffeeshop_id values (PK)
+-- into the shops table yet
+INSERT INTO employees 
+VALUES
+(501559, 'Carson', 'Mosconi', 'cmosconi0@census.gov', '2015/08/29', 'M', 32973, NULL),
+(144108, 'Khalil', 'Corr', 'kcorr1@github.io', '2014/04/23', 'M', 52802, NULL)
+-- Insert first entry into the shops table with coffeeshop_id (PK) = 1
+-- Set the city_id (FK) to NULL for now as I have not inserted the city_id values (PK) into the 
+-- locations table yet
+INSERT INTO shops 
+VALUES
+(1, 'Common Grounds', NULL)
+-- Now set the coffeeshop_id (FK) for the first two employees of the employees table to 1
+UPDATE employees
+SET coffeeshop_id = 1
+where employee_id IN (501559, 144108)
+-- Insert first entry into the locations table with city_id (PK) = 1
+INSERT INTO LOCATIONS
+VALUES
+(1, 'Los Angeles', 'United States')
+-- Now I can update the city_id (FK) in the shops table for coffeeshop_id = 1 to 1
+UPDATE shops 
+SET city_id = 1
+WHERE coffeeshop_id = 1
