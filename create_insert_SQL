@@ -66,3 +66,10 @@ VALUES
 UPDATE shops 
 SET city_id = 1
 WHERE coffeeshop_id = 1
+-- Add column coffee_type to the suppliers table
+ALTER TABLE suppliers
+ADD COLUMN coffee_type VARCHAR(50)
+-- Insert the first two values where coffeeshop_id (PK FK) = 1 into the suppliers table
+INSERT INTO suppliers VALUES(1, 'Beans and Barley', 'Arabica');
+INSERT INTO suppliers VALUES(1, 'Cool Beans', 'Robusta');
+-- NOW I CAN DO THE REST OF THE INSERT STATEMENTS WITH COPY AND PASTE
