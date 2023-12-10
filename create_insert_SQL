@@ -1,3 +1,9 @@
+-- DROP TABLES
+DROP TABLE IF EXISTS employees CASCADE;
+DROP TABLE IF EXISTS shops CASCADE;
+DROP TABLE IF EXISTS locations CASCADE;
+DROP TABLE IF EXISTS suppliers CASCADE;
+
 -- Create employees table
 CREATE TABLE employees (
 	employee_id INTEGER PRIMARY KEY,
