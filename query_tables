@@ -50,4 +50,23 @@ where salary BETWEEN 35000 and 50000
 -- or
 select first_name, last_name, salary from employees
 where salary >= 35000 and salary <= 50000
-
+-- ORDER BY, LIMIT, DISTINCT, Renaming columns (AS)
+-- Top 10 highest paid employees
+select * from employees
+ORDER BY salary DESC
+LIMIT 10
+-- Return all unique coffeeshop ids
+select distinct(coffeeshop_id) from employees
+-- Renaming columns
+select email, email AS email_address, hire_date, hire_date AS date_joined, salary, salary AS pay
+from employees
+-- EXTRACT DOW, DOY, MONTH, DAY, YEAR, QUARTER, WEEK FROM columns
+select hire_date,
+EXTRACT (DOW FROM hire_date) AS day_of_the_week,
+EXTRACT (DOY FROM hire_date) AS day_of_the_year,
+EXTRACT (MONTH FROM hire_date) AS month,
+EXTRACT (DAY FROM hire_date) AS day,
+EXTRACT (YEAR FROM hire_date) AS year,
+EXTRACT (QUARTER FROM hire_date) AS quarter,
+EXTRACT (WEEK FROM hire_date) AS week
+from employees
