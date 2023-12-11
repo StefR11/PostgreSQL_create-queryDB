@@ -103,4 +103,9 @@ select email,
 CASE WHEN email LIKE '%.com%' THEN 'true' ELSE 'False'
 END AS email_com
 from employees
+-- SUBSTRING, POSITION, COALESCE
+-- Substring. Get the email from the 5th character of the email
+select email, SUBSTRING(email FROM 5) from employees
+-- Position. Find the position of '@' in the email
+select email, POSITION('@' IN email) from employees
 
