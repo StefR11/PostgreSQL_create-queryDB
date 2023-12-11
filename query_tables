@@ -79,3 +79,28 @@ select first_name, UPPER(first_name) AS first_name_upper,
 from employees
 -- Return the email and the length of emails
 select email, LENGTH(email) AS email_length from employees
+-- Concatenation, Case When, Wildcards
+-- Concatenate first and last names to create full names
+select concat_ws(' ', first_name, last_name) AS full_name from employees
+-- OR
+select first_name || ' ' || last_name from employees
+-- Concatenate columns to create a sentence
+select concat_ws(' ', first_name, last_name, 'makes', salary) from employees
+-- If the employees make less than 50K, then true, otherwise false
+select concat_ws(' ', first_name, last_name), salary,
+CASE 
+WHEN salary < 50000 THEN 'true' ELSE 'false'
+END AS less_than_50K
+from employees
+-- If an employee is a female and makes less than 50K, then true, otherwise false
+select concat_ws(' ', first_name, last_name), salary,
+CASE 
+WHEN salary < 50000 and gender = 'F' THEN 'true' ELSE 'false'
+END AS less_than_50K_female
+from employees
+-- Case When with Wildcards. If the email has '.com', return true, otherwise false
+select email,
+CASE WHEN email LIKE '%.com%' THEN 'true' ELSE 'False'
+END AS email_com
+from employees
+
