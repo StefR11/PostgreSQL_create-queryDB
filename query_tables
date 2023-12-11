@@ -1,1 +1,23 @@
--- SELECT statements
+-- Select only the employees who make more than 50K
+select first_name, last_name from employees
+where salary > 50000
+-- Select only the employees who work in Common Grounds coffeeshop
+select emp.first_name, emp.last_name, sh.coffeeshop_name from employees emp
+inner join shops sh
+on sh.coffeeshop_id = emp.coffeeshop_id 
+where sh.coffeeshop_name = 'Common Grounds'
+-- Select only the employees who work in Common Grounds coffeeshop AND make more than 50K
+select emp.first_name, emp.last_name, sh.coffeeshop_name, emp.salary from employees emp
+inner join shops sh
+on sh.coffeeshop_id = emp.coffeeshop_id 
+where sh.coffeeshop_name = 'Common Grounds' and emp.salary > 50000
+-- Select only the employees who work in Common Grounds coffeeshop OR make more than 50K
+select emp.first_name, emp.last_name, sh.coffeeshop_name, emp.salary from employees emp
+inner join shops sh
+on sh.coffeeshop_id = emp.coffeeshop_id 
+where sh.coffeeshop_name = 'Common Grounds' or emp.salary > 50000
+-- Select all the employees who work in Common Grounds, make more than 50K and are male
+select emp.first_name, emp.last_name, sh.coffeeshop_name, emp.salary, emp.gender from employees emp
+inner join shops sh
+on sh.coffeeshop_id = emp.coffeeshop_id 
+where sh.coffeeshop_name = 'Common Grounds' and emp.salary > 50000 and emp.gender = 'M'
