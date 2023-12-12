@@ -126,4 +126,19 @@ select SUM(salary) from employees
 -- Count the number of entries (countrows, count everything)
 select COUNT(*) from employees
 
+-- GROUP BY & HAVING
+-- Return the number of employees for each coffee shop
+select count(emp.employee_id) AS number_of_employees, sh.coffeeshop_name from employees emp
+inner join shops sh
+on emp.coffeeshop_id = sh.coffeeshop_id
+group by sh.coffeeshop_name
+-- Return the total salaries for each coffeeshop
+select sum(emp.salary) AS total_salaries, sh.coffeeshop_name from employees emp
+inner join shops sh
+on emp.coffeeshop_id = sh.coffeeshop_id
+group by sh.coffeeshop_name
+order by total_salaries DESC
+
+
+
 
