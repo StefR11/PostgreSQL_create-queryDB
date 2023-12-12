@@ -139,6 +139,18 @@ on emp.coffeeshop_id = sh.coffeeshop_id
 group by sh.coffeeshop_name
 order by total_salaries DESC
 
+-- Return the number of employees, the AVG & MIN, MAX & total salaries for each of the coffeeshop
+select sh.coffeeshop_name,
+sum(emp.salary) AS total_salaries,
+count(emp.employee_id) AS number_of_employees,
+ROUND(AVG(emp.salary),0) AS rounded_average_salary,
+MIN(emp.salary) AS minimum_salary,
+MAX(emp.salary) AS maximum_salary
+from employees emp
+inner join shops sh on emp.coffeeshop_id = sh.coffeeshop_id
+group by sh.coffeeshop_name
+order by number_of_employees DESC
+
 
 
 
