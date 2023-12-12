@@ -112,4 +112,18 @@ select email, POSITION('@' IN email) from employees
 select email, 
 COALESCE(email, 'NO EMAIL PROVIDED')
 from employees
+-- MIN, MAX, AVG, SUM, COUNT
+-- Select the minimum salary
+select MIN(salary) AS minimum_salary from employees
+-- Select the maximum salary
+select MAX(salary) AS maximum_salary from employees
+-- Select difference between maximum and minimum salary
+select MAX(salary) - MIN(salary) from employees
+-- Select the AVG salary
+select ROUND(AVG(salary),0) from employees
+-- Sum up the salaries
+select SUM(salary) from employees
+-- Count the number of entries (countrows, count everything)
+select COUNT(*) from employees
+
 
