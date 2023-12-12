@@ -108,4 +108,8 @@ from employees
 select email, SUBSTRING(email FROM 5) from employees
 -- Position. Find the position of '@' in the email
 select email, POSITION('@' IN email) from employees
+-- COALESCE to FILL missing values in a column
+select email, 
+COALESCE(email, 'NO EMAIL PROVIDED')
+from employees
 
