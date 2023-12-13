@@ -177,6 +177,17 @@ group by sh.coffeeshop_name
 HAVING MIN(emp.salary) < 10000
 order by total_number_of_employees DESC
 
+-- CASE, CASE with GROUP BY, and CASE for TRANSPOSING data
+-- CASE 
+-- If pay is less than 50K, then low pay, otherwise high pay
+select employee_id, first_name, last_name, salary,
+CASE 
+	WHEN salary < 50000 THEN 'low_pay' 
+	ELSE 'high_pay'
+	END AS salary_status
+from employees
+order by salary DESC
+
 
 
 
