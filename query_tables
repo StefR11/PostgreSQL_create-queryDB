@@ -164,6 +164,18 @@ inner join shops sh on emp.coffeeshop_id = sh.coffeeshop_id
 group by sh.coffeeshop_name
 HAVING count(emp.employee_id) > 200
 order by total_number_of_employees DESC
+-- Return the number of employees, the AVG & MIN, MAX & total salaries for each of the coffeeshop with
+-- a minimum salary of less than 10K
+select * from shops
+select * from employees
+select sh.coffeeshop_name, count(emp.employee_id) AS total_number_of_employees, 
+ROUND(AVG(emp.salary),0) AS rounded_salary, MIN(emp.salary) AS minimum_salary,
+MAX(emp.salary) AS maximum_salary, SUM(emp.salary) AS total_salaries
+from employees emp
+inner join shops sh on emp.coffeeshop_id = sh.coffeeshop_id
+group by sh.coffeeshop_name
+HAVING MIN(emp.salary) < 10000
+order by total_number_of_employees DESC
 
 
 
