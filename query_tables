@@ -225,7 +225,7 @@ END AS salary_status
 from employees
 order by salary DESC
 
--- CASE, GROUP BY & JOIN
+-- CASE, JOIN & GROUP BY
 -- Return the count of employees per coffeeshop in each pay category 
 select sh.coffeeshop_name,
 COUNT(CASE WHEN emp.salary < 20000 THEN emp.employee_id ELSE NULL END) AS low_pay_number_of_employees,
