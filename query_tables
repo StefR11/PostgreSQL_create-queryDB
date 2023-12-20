@@ -237,6 +237,20 @@ from employees emp
 inner join shops sh on emp.coffeeshop_id = sh.coffeeshop_id
 group by sh.coffeeshop_name
 
+-- CASE, GROUP BY & SUBQUERY
+-- Return the count of employees in each pay category I created within the CASE statement
+SELECT A.pay_category, COUNT(employee_id) AS number_of_employees FROM
+(select employee_id, first_name, last_name, salary,
+CASE 
+	WHEN salary < 20000 THEN 'low_pay'
+	WHEN salary BETWEEN 20000 AND 50000 THEN 'medium_pay'
+	WHEN salary > 50000 THEN 'high_pay'
+ELSE 'check_logic'
+END AS pay_category
+FROM employees 
+ORDER BY salary DESC) A
+GROUP BY A.pay_category
+
 
 
 
