@@ -1,26 +1,31 @@
 -- Select only the employees who make more than 50K
 select first_name, last_name from employees
 where salary > 50000
+
 -- Select only the employees who work in Common Grounds coffeeshop
 select emp.first_name, emp.last_name, sh.coffeeshop_name from employees emp
 inner join shops sh
 on sh.coffeeshop_id = emp.coffeeshop_id 
 where sh.coffeeshop_name = 'Common Grounds'
+
 -- Select only the employees who work in Common Grounds coffeeshop AND make more than 50K
 select emp.first_name, emp.last_name, sh.coffeeshop_name, emp.salary from employees emp
 inner join shops sh
 on sh.coffeeshop_id = emp.coffeeshop_id 
-where sh.coffeeshop_name = 'Common Grounds' and emp.salary > 50000
+where sh.coffeeshop_name = 'Common Grounds' and emp.salary > 
+
 -- Select only the employees who work in Common Grounds coffeeshop OR make more than 50K
 select emp.first_name, emp.last_name, sh.coffeeshop_name, emp.salary from employees emp
 inner join shops sh
 on sh.coffeeshop_id = emp.coffeeshop_id 
 where sh.coffeeshop_name = 'Common Grounds' or emp.salary > 50000
+
 -- Select all the employees who work in Common Grounds, make more than 50K and are male
 select emp.first_name, emp.last_name, sh.coffeeshop_name, emp.salary, emp.gender from employees emp
 inner join shops sh
 on sh.coffeeshop_id = emp.coffeeshop_id 
 where sh.coffeeshop_name = 'Common Grounds' and emp.salary > 50000 and emp.gender = 'M'
+
 -- IS, IS NOT, IN, NOT IN, IS NULL, IS NOT NULL, BETWEEN operators
 select * from employees
 select * from shops
@@ -50,6 +55,7 @@ where salary BETWEEN 35000 and 50000
 -- or
 select first_name, last_name, salary from employees
 where salary >= 35000 and salary <= 50000
+
 -- ORDER BY, LIMIT, DISTINCT, Renaming columns (AS)
 -- Top 10 highest paid employees
 select * from employees
@@ -60,6 +66,7 @@ select distinct(coffeeshop_id) from employees
 -- Renaming columns
 select email, email AS email_address, hire_date, hire_date AS date_joined, salary, salary AS pay
 from employees
+
 -- EXTRACT DOW, DOY, MONTH, DAY, YEAR, QUARTER, WEEK FROM columns
 select hire_date,
 EXTRACT (DOW FROM hire_date) AS day_of_the_week,
@@ -70,6 +77,7 @@ EXTRACT (YEAR FROM hire_date) AS year,
 EXTRACT (QUARTER FROM hire_date) AS quarter,
 EXTRACT (WEEK FROM hire_date) AS week
 from employees
+
 -- UPPER, LOWER, LENGTH
 -- Uppercase and lowercase first and last names
 select first_name, UPPER(first_name) AS first_name_upper,
@@ -77,6 +85,7 @@ select first_name, UPPER(first_name) AS first_name_upper,
 	   first_name, LOWER(first_name) AS first_name_lower,
 	   last_name, LOWER(last_name) AS last_name_lower
 from employees
+
 -- Return the email and the length of emails
 select email, LENGTH(email) AS email_length from employees
 -- Concatenation, Case When, Wildcards
@@ -86,6 +95,7 @@ select concat_ws(' ', first_name, last_name) AS full_name from employees
 select first_name || ' ' || last_name from employees
 -- Concatenate columns to create a sentence
 select concat_ws(' ', first_name, last_name, 'makes', salary) from employees
+
 -- If the employees make less than 50K, then true, otherwise false
 select concat_ws(' ', first_name, last_name), salary,
 CASE 
@@ -103,6 +113,7 @@ select email,
 CASE WHEN email LIKE '%.com%' THEN 'true' ELSE 'False'
 END AS email_com
 from employees
+
 -- SUBSTRING, POSITION, COALESCE
 -- Substring. Get the email from the 5th character of the email
 select email, SUBSTRING(email FROM 5) from employees
@@ -213,6 +224,18 @@ ELSE 'check_logic'
 END AS salary_status
 from employees
 order by salary DESC
+
+-- CASE, GROUP BY & JOIN
+-- Return the count of employees per coffeeshop in each pay category 
+select sh.coffeeshop_name,
+COUNT(CASE WHEN emp.salary < 20000 THEN emp.employee_id ELSE NULL END) AS low_pay_number_of_employees,
+COUNT(CASE WHEN emp.salary >= 20000 AND emp.salary <= 50000 THEN emp.employee_id ELSE NULL END) AS 
+medium_pay_number_of_employees,
+COUNT(CASE WHEN emp.salary > 50000 THEN emp.employee_id ELSE NULL END) AS
+high_pay_number_of_employees
+from employees emp
+inner join shops sh on emp.coffeeshop_id = sh.coffeeshop_id
+group by sh.coffeeshop_name
 
 
 
