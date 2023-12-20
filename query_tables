@@ -198,6 +198,22 @@ CASE
 from employees
 order by salary DESC
 
+-- If pay is less than 20K, then low pay, If between 20K-50K inclusive, then medium pay.
+-- If over 50K, then high pay
+select * from employees
+select * from locations
+select * from shops
+select * from suppliers
+select employee_id, first_name, last_name, salary,
+CASE 
+	WHEN salary < 20000 THEN 'low_pay'
+	WHEN salary >=20000 AND salary <=50000 THEN 'medium_pay'
+	WHEN salary > 50000 THEN 'high_pay'
+ELSE 'check_logic'
+END AS salary_status
+from employees
+order by salary DESC
+
 
 
 
