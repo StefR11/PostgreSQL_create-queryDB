@@ -265,6 +265,26 @@ order by salary DESC)
 select count(employee_id) AS number_of_employees, pay_category from CTE
 group by pay_category
 
+-- UNION (to stack data on top of each other, so rather than joining data horizontally, I will
+-- just be stacking data vertically)
+-- Return all cities and countries 
+-- UNION removes duplicates
+SELECT city FROM locations
+UNION
+SELECT country FROM locations
+-- UNION ALL keeps duplicates
+SELECT city FROM locations
+UNION ALL
+SELECT country FROM locations
+
+-- Return all coffeeshop names, cities and countries
+SELECT coffeeshop_name FROM shops
+UNION 
+SELECT city FROM locations
+UNION
+SELECT country FROM locations
+
+
 
 
 
