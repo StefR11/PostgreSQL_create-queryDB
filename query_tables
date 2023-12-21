@@ -251,6 +251,21 @@ FROM employees
 ORDER BY salary DESC) A
 GROUP BY A.pay_category
 
+-- CASE, GROUP BY & COMMON TABLE EXPRESSION
+-- Return the count of employees in each pay category
+with CTE as(select employee_id, first_name, last_name,
+CASE 
+	WHEN salary < 20000 then 'low_pay'
+	WHEN salary between 20000 and 50000 then 'medium_pay'
+	WHEN salary > 50000 then 'high_pay'
+	ELSE 'check_logic'
+END AS pay_category
+from employees
+order by salary DESC)
+select count(employee_id) AS number_of_employees, pay_category from CTE
+group by pay_category
+
+
 
 
 
