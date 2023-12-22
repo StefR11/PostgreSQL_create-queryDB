@@ -299,6 +299,11 @@ SELECT first_name, last_name, salary,
 (SELECT ROUND(AVG(salary),0) AS avg_salary FROM employees LIMIT 1)
 FROM employees
 
+SELECT first_name, last_name, salary,
+salary - (SELECT ROUND(AVG(salary),0)FROM employees LIMIT 1)
+FROM employees
+
+
 
 
 
