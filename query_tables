@@ -12,7 +12,7 @@ where sh.coffeeshop_name = 'Common Grounds'
 select emp.first_name, emp.last_name, sh.coffeeshop_name, emp.salary from employees emp
 inner join shops sh
 on sh.coffeeshop_id = emp.coffeeshop_id 
-where sh.coffeeshop_name = 'Common Grounds' and emp.salary > 
+where sh.coffeeshop_name = 'Common Grounds' and emp.salary > 50000
 
 -- Select only the employees who work in Common Grounds coffeeshop OR make more than 50K
 select emp.first_name, emp.last_name, sh.coffeeshop_name, emp.salary from employees emp
