@@ -284,6 +284,11 @@ SELECT city FROM locations
 UNION
 SELECT country FROM locations
 
+-- Subqueries
+-- Subqueries in the FROM clause
+SELECT a.employee_id, a.first_name, a.last_name 
+FROM (SELECT * FROM employees WHERE coffeeshop_id IN (3,4)) a
+
 
 
 
