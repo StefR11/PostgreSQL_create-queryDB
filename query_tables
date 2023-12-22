@@ -289,6 +289,16 @@ SELECT country FROM locations
 SELECT a.employee_id, a.first_name, a.last_name 
 FROM (SELECT * FROM employees WHERE coffeeshop_id IN (3,4)) a
 
+-- Subqueries in the SELECT clause
+SELECT first_name, last_name, salary,
+(SELECT MAX(salary) FROM employees 
+LIMIT 1)
+FROM employees
+
+SELECT first_name, last_name, salary,
+(SELECT ROUND(AVG(salary),0) AS avg_salary FROM employees LIMIT 1)
+FROM employees
+
 
 
 
