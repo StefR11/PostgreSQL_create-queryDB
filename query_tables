@@ -284,24 +284,26 @@ SELECT city FROM locations
 UNION
 SELECT country FROM locations
 
--- Subqueries
--- Subqueries in the FROM clause
-SELECT a.employee_id, a.first_name, a.last_name 
-FROM (SELECT * FROM employees WHERE coffeeshop_id IN (3,4)) a
+-- SUBQUERIES
+select * from employees
+-- Basic subqueries with subqueries in the FROM clause
+SELECT a.employee_id, a.first_name, a.last_name FROM
+(select * from employees
+where coffeeshop_id IN (3,4)) a
+ -- Basic subqueries with subqueries in the SELECT clause 
+select first_name, last_name, salary,
+(SELECT MAX(salary) FROM employees)
+from employees
 
--- Subqueries in the SELECT clause
-SELECT first_name, last_name, salary,
-(SELECT MAX(salary) FROM employees 
-LIMIT 1)
-FROM employees
+select first_name, last_name, salary,
+(SELECT ROUND(AVG(salary),0) AS avg_salary FROM employees)
+from employees
 
-SELECT first_name, last_name, salary,
-(SELECT ROUND(AVG(salary),0) AS avg_salary FROM employees LIMIT 1)
-FROM employees
-
-SELECT first_name, last_name, salary,
-salary - (SELECT ROUND(AVG(salary),0)FROM employees LIMIT 1)
-FROM employees
+-- A calculation to calculate the difference between person's salary and the avg
+select first_name, last_name, salary, (SELECT ROUND(AVG(salary),0) AS avg_salary FROM employees),
+salary - (SELECT ROUND(AVG(salary),0) AS avg_salary FROM employees) 
+AS diff_between_each_salary_and_avg
+from employees 
 
 
 
