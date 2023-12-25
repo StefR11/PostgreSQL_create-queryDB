@@ -335,6 +335,13 @@ where city_id IN
 where country = 'United States'))
 order by salary DESC
 
+-- 30 day moving total pay (subquery in the SELECT clause)
+SELECT hire_date, salary,
+(SELECT SUM(salary) from employees e2
+WHERE e2.hire_date BETWEEN e1.hire_date - 30 AND e1.hire_date) AS pay_pattern
+FROM employees e1
+ORDER BY hire_date
+
 
 
 
