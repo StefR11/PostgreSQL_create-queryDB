@@ -1,4 +1,4 @@
-In this project I will create a Relational Database Management System and query the tables to get insights from them. 
+In this project I will create a Relational Database Management System and will query the tables to get insights from them. 
 RDBMS used = PostgreSQL
 Project Outline:
 •	QUERIES, TABLES AND KEYS
