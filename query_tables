@@ -317,6 +317,26 @@ inner join locations l
 on l.city_id = s.city_id
 where l.country = 'United States'
 
+-- Subqueries in the WHERE clause
+-- Return all employees who work in US coffee shops
+select employee_id, first_name, last_name, coffeeshop_id from employees
+where coffeeshop_id IN
+(select coffeeshop_id from shops
+where city_id IN
+(select city_id from locations
+where country = 'United States'))
+
+-- Return all employees who make over 35K and work in US coffee shops
+select employee_id, first_name, last_name, salary, coffeeshop_id from employees
+where salary > 25000 and coffeeshop_id IN
+(select coffeeshop_id from shops
+where city_id IN
+(select city_id from locations
+where country = 'United States'))
+order by salary DESC
+
+
+
 
 
 
