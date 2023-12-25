@@ -305,6 +305,19 @@ salary - (SELECT ROUND(AVG(salary),0) AS avg_salary FROM employees)
 AS diff_between_each_salary_and_avg
 from employees 
 
+-- Subqueries in the WHERE clause
+-- Return all US coffeeshops
+select * from shops
+WHERE city_id IN 
+(select city_id from locations where country = 'United States')
+
+-- I could have also joined the shops and locations tables without using subquery
+select s.coffeeshop_name, l.country from shops s
+inner join locations l
+on l.city_id = s.city_id
+where l.country = 'United States'
+
+
 
 
 
